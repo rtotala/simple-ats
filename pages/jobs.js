@@ -38,48 +38,30 @@ function Jobs({ jobs }) {
           </Col>
         </Row>
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://github.com/baykamsay/simple-ats"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on GitHub
-        </a>
-      </footer> */}
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${process.env.URL}api/jobs`);
-  const jobs = await res.json();
 
-  return {
-    props: {
-      jobs
-    },
-    revalidate: 60
-  }
+  try {
+    const res = await fetch(`${process.env.URL}api/jobs`);
+    const jobs = await res.json();
   
-  .then(
-    async (res) => {
-      const jobs = await res.json();
-      return {
-        props: {
-          jobs,
-        },
-      };
-    },
-    () => {
-      return {
-        props: {
-          jobs: [{}],
-        },
-      };
+    return {
+      props: {
+        jobs
+      },
+      revalidate: 60
     }
-  );
+  } catch (e) {
+    return {
+      props: {
+        jobs: [{}]
+      },
+      revalidate: 10
+    }
+  }
 }
 
 export default Jobs;

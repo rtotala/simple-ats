@@ -1,11 +1,9 @@
 import Head from "next/head";
-import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import listingStyles from "../../styles/ListingsPage.module.css";
 import {
   Row,
   Col,
-  Spin,
   Form,
   Input,
   Button,
@@ -13,8 +11,6 @@ import {
   message,
   Upload,
 } from "antd";
-import { useRouter } from "next/router";
-import useSWR from "swr";
 import fetch from "isomorphic-unfetch";
 import ReactMarkdown from "react-markdown";
 
@@ -39,17 +35,8 @@ const normFile = (e) => {
   return e && e.fileList;
 };
 
-function Jobs() {
+function Jobs({ data, id}) {
   const [form] = Form.useForm();
-  const router = useRouter();
-  const { id } = router.query;
-
-  const { data, error } = useSWR(`/api/jobListing/${id}`, async function (
-    args
-  ) {
-    const res = await fetch(args);
-    return res.json();
-  });
 
   async function handleSubmit(e) {
     e.listing = id;
@@ -61,22 +48,6 @@ function Jobs() {
     form.resetFields();
     message.success("Your application has been submitted");
   }
-
-  if (error)
-    return (
-      <div>
-        This page does not exist,{" "}
-        <Link href="/jobs">
-          <a>click here to go back.</a>
-        </Link>
-      </div>
-    );
-  if (!data)
-    return (
-      <div className={styles.container}>
-        <Spin size="large" />
-      </div>
-    );
 
   return (
     <div className={styles.container} {...listingStyles}>
@@ -167,18 +138,36 @@ function Jobs() {
           </Col>
         </Row>
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://github.com/baykamsay/simple-ats"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on GitHub
-        </a>
-      </footer> */}
     </div>
   );
+}
+
+export async function getStaticProps({ params}) {
+
+  const id = params.id ? params.id : null;
+
+  if (id) {
+    const res = await fetch(`${process.env.URL}api/jobListing/${id}`);
+    const data = await res.json();
+    console.log(data);
+    return {
+      props: {
+        data,
+        id
+      },
+      revalidate: 60
+    }
+  } else {
+    throw new Error("Job Id is needed");
+  }
+}
+
+export async function getStaticPaths() {
+
+  return {
+    paths: [],
+    fallback: true
+  }
 }
 
 export default Jobs;
