@@ -7,6 +7,7 @@ const jwtSecret = process.env.JWT_SECRET; // put your jwt secret in env.local
 
 const saltRounds = 10;
 const dbName = "ATS";
+console.log(process.env.DB_URL);
 const client = new MongoClient(
   process.env.DB_URL, // put your db url in .env.local
   {

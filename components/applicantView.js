@@ -31,7 +31,10 @@ export default function ApplicantView(props) {
     }
     return color;
   }
-  if (error) return <div>failed to load</div>;
+  if (error) {
+    console.log(error);
+    return `<div> Error </div>`
+  }
   if (!data)
     return (
       <div

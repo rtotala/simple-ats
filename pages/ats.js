@@ -35,8 +35,8 @@ function ATS({ staticProps }) {
   return (
     <div>
       <Head>
-        <title>Simple ATS</title>
-        <link rel="icon" href="/favicon.png" />
+        <title>PlatOz ATS</title>
+        <link rel="icon" href="/favicon.webp" />
       </Head>
 
       <Layout style={{ minHeight: "100vh" }}>
@@ -50,7 +50,7 @@ function ATS({ staticProps }) {
           <Row>
             <Col flex="auto">
               <img
-                src="/logo_transparent.png"
+                src="/logo_transparent.webp"
                 alt="Logo"
                 className={styles.logo}
               />
@@ -64,7 +64,7 @@ function ATS({ staticProps }) {
               >
                 <Menu.Item key="1">Applicants</Menu.Item>
                 <Menu.Item key="2">Job Listings</Menu.Item>
-                <Menu.Item key="3">Settings</Menu.Item>
+                {/* <Menu.Item key="3">Settings</Menu.Item> */}
               </Menu>
             </Col>
             <Col flex="80px">
@@ -98,6 +98,7 @@ export async function getServerSideProps() {
       const jobs = await res.json();
       const res2 = await fetch(`${process.env.URL}api/pipeline`);
       const pipeline = await res2.json();
+      console.log(jobs[0]);
       return {
         props: {
           staticProps: {
@@ -107,7 +108,8 @@ export async function getServerSideProps() {
         },
       };
     },
-    () => {
+    (err) => {
+      console.log(err);
       return {
         props: {
           staticProps: {

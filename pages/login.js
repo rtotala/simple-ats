@@ -55,8 +55,8 @@ const Login = () => {
   return (
     <div>
       <Head>
-        <title>Login - Simple ATS</title>
-        <link rel="icon" href="/favicon.png" />
+        <title>Login - PlatOz ATS</title>
+        <link rel="icon" href="/favicon.webp" />
       </Head>
 
       <Layout style={{ minHeight: "100vh" }}>
@@ -104,11 +104,11 @@ const Login = () => {
               </Button>
             </Form.Item>
             <Text>
-              Demo Username: guest <br /> Demo Password: guest
+              Demo Username: test1 <br /> Demo Password: test1
             </Text>
           </Form>
         </Content>
-        <Footer style={{ textAlign: "center" }}>Baykam Say ©2020</Footer>
+        <Footer style={{ textAlign: "center" }}>PlatOz</Footer>
       </Layout>
     </div>
   );

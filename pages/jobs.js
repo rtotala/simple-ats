@@ -9,7 +9,7 @@ function Jobs({ jobs }) {
     <div className={styles.container} {...listingStyles}>
       <Head>
         <title>Jobs</title>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.webp" />
       </Head>
 
       <main className={styles.main}>
@@ -39,7 +39,7 @@ function Jobs({ jobs }) {
         </Row>
       </main>
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <a
           href="https://github.com/baykamsay/simple-ats"
           target="_blank"
@@ -47,13 +47,23 @@ function Jobs({ jobs }) {
         >
           View on GitHub
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  return fetch(`${process.env.URL}api/jobs`).then(
+export async function getStaticProps() {
+  const res = await fetch(`${process.env.URL}api/jobs`);
+  const jobs = await res.json();
+
+  return {
+    props: {
+      jobs
+    },
+    revalidate: 60
+  }
+  
+  .then(
     async (res) => {
       const jobs = await res.json();
       return {

@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import listingStyles from "../styles/ListingsPage.module.css";
-import { Row, Col, Button } from "antd";
+import { Row, Col } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
     <div className={styles.container} {...listingStyles}>
       <Head>
         <title>Home</title>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="https://static.wixstatic.com/media/a2f067_10219a31bb08479399922a59eca3dc6c~mv2.png/v1/crop/x_214,y_155,w_197,h_89/fill/w_162,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/final.png" />
       </Head>
 
       <main className={styles.main}>
@@ -98,24 +98,6 @@ export default function Home() {
               }}
             >
               <img src="/our-team.png" alt="Our Team" width="100%"></img>
-              <span>
-                Photo by{" "}
-                <a
-                  href="https://unsplash.com/@annaelizaearl?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Anna Earl
-                </a>{" "}
-                on{" "}
-                <a
-                  href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Unsplash
-                </a>
-              </span>
             </Col>
           </Col>
         </Row>
@@ -126,7 +108,7 @@ export default function Home() {
         </Row>
       </main>
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <a
           href="https://github.com/baykamsay/simple-ats"
           target="_blank"
@@ -134,7 +116,7 @@ export default function Home() {
         >
           View on GitHub
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 }
