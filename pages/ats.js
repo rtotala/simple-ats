@@ -40,13 +40,7 @@ function ATS({ staticProps }) {
       </Head>
 
       <Layout style={{ minHeight: "100vh" }}>
-        <Header
-          style={{
-            position: "fixed",
-            zIndex: 1,
-            width: "100%",
-          }}
-        >
+        <Header className={homeStyle.header}>
           <Row>
             <Col flex="auto">
               <img
@@ -55,7 +49,7 @@ function ATS({ staticProps }) {
                 className={styles.logo}
               />
               <Menu
-                theme="dark"
+                theme="light"
                 mode="horizontal"
                 defaultSelectedKeys={["1"]}
                 onSelect={(item) => {

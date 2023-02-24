@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button, Form, Input } from "antd";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false
+});
+
 
 const layout = {
   labelCol: { span: 4 },
@@ -8,12 +13,31 @@ const layout = {
 
 export default function AddJobModal(props) {
   const [form] = Form.useForm();
+
+  const [rte, setRte] = useState({
+    theme: 'snow',
+    enabled: true,
+    readOnly: false,
+    value: { ops: []}
+  });
+
+  const onEditorChange = (value, delta, source, editor) => {
+    console.log(value, editor);
+    setRte({
+      value: editor.getHTML()
+    });
+  }
+
   async function handleSubmit(e) {
+    e.description = rte.value;
     await fetch("/api/jobs", {
       method: "post",
       body: JSON.stringify(e),
     });
     form.resetFields();
+    setRte({
+      value: {ops: []}
+    });
     props.close();
   }
   return (
@@ -49,8 +73,10 @@ export default function AddJobModal(props) {
           name="description"
           label="Description"
           rules={[{ required: true }]}
+          initialValue={""}
         >
-          <Input.TextArea rows={8} />
+          <ReactQuill theme="snow" value={rte.value} onChange={onEditorChange} />
+          {/* <Input.TextArea rows={8} /> */}
         </Form.Item>
         <Form.Item
           wrapperCol={{

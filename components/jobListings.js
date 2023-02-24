@@ -40,7 +40,7 @@ export default function JobListings() {
   return (
     <Layout
       className={styles.siteLayoutBackground}
-      style={{ paddingTop: 84, minHeight: "100vh" }}
+      style={{ paddingTop: 10, minHeight: "100vh" }}
     >
       <AddJobModal
         visible={newJobModalVisible}
@@ -104,9 +104,7 @@ export default function JobListings() {
                 }}
                 title={item.title}
               >
-                {item.description.length <= 88
-                  ? item.description
-                  : `${item.description.substr(0, 85)}...`}
+                {item.location}
               </Card>
             </List.Item>
           )}

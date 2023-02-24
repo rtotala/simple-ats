@@ -3,22 +3,43 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import listingStyles from "../styles/ListingsPage.module.css";
 import { Row, Col } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { Header } from "antd/lib/layout/layout";
+import atsStyle from "../styles/ATS.module.css";
 
 export default function Home() {
   return (
     <div className={styles.container} {...listingStyles}>
       <Head>
         <title>Home</title>
-        <link rel="icon" href="https://static.wixstatic.com/media/a2f067_10219a31bb08479399922a59eca3dc6c~mv2.png/v1/crop/x_214,y_155,w_197,h_89/fill/w_162,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/final.png" />
+        <link
+          rel="icon"
+          href="https://static.wixstatic.com/media/a2f067_10219a31bb08479399922a59eca3dc6c~mv2.png/v1/crop/x_214,y_155,w_197,h_89/fill/w_162,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/final.png"
+        />
       </Head>
 
       <main className={styles.main}>
+        <Header className={styles.header}>
+          <Row>
+            <Col flex="auto">
+              <img
+                src="/logo_transparent.webp"
+                alt="Logo"
+                className={atsStyle.logo}
+              />
+            </Col>
+            <Col flex="80px">
+              <Link href="/login">
+                <span className={listingStyles.button}> Sign In </span>
+              </Link>
+            </Col>
+          </Row>
+        </Header>
+
         <Row
           style={{
-            minHeight: "60vh",
+            minHeight: "40vh",
           }}
-          className={listingStyles.secondary_b}
+          className={listingStyles.primary_b}
           justify="center"
           align="bottom"
         >
@@ -27,12 +48,10 @@ export default function Home() {
             lg={{ span: 8 }}
             style={{ paddingBottom: "5rem" }}
           >
-            <h1 className={listingStyles.primary}>Example Jobs</h1>
-            <h5 className={listingStyles.primary}>
-              Join Us &ndash; add small and meaningful slogan here
-            </h5>
+            <h1 className={listingStyles.secondary}>PlatOz</h1>
+            <h5 className={listingStyles.secondary}>We Help Build Careers</h5>
             <Link href="/jobs">
-              <a className={listingStyles.button}>View Open Jobs</a>
+              <span className={listingStyles.button}>View Open Jobs</span>
             </Link>
           </Col>
           <Col
@@ -40,45 +59,38 @@ export default function Home() {
             lg={{ span: 8 }}
             style={{ paddingBottom: "5rem" }}
           >
-            <p className={listingStyles.primary}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              interdum hendrerit pulvinar. Cras accumsan imperdiet augue in
-              ornare. Ut ac ex eu leo aliquet porttitor ac id ligula.
+            <p className={listingStyles.secondary}>
+              Caring for your Job Today and Tomorrow We believe in providing
+              strategic solutions that are effective and brings value which are
+              simple to adopt, economical and also competitive.
             </p>
             <p
               className={[
-                listingStyles.primary,
+                listingStyles.secondary,
                 listingStyles.margin_bottom,
               ].join(" ")}
             >
-              Nulla pellentesque lorem turpis, in rhoncus urna euismod sit amet.
-              Aenean pharetra justo felis, quis congue dui faucibus non. Nulla
-              blandit lacinia dolor, sit amet mattis massa fermentum ac.in.
+              We are successful in closing the positions on time by providing
+              prime talent to our esteemed clients. by helping our client
+              organizations
             </p>
           </Col>
         </Row>
         <Row style={{ minHeight: "30vh", paddingTop: "5%" }} justify="center">
           <Col xs={{ span: 20 }} lg={{ span: 8 }}>
-            <h2>Our Mission</h2>
+            <h2>About Us</h2>
           </Col>
           <Col xs={{ span: 20 }} lg={{ span: 8 }}>
-            <p
-              className={[listingStyles.mission, listingStyles.secondary].join(
-                " "
-              )}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              interdum hendrerit pulvinar. Cras accumsan imperdiet augue in
-              ornare.
+            <p className={[listingStyles.secondary].join(" ")}>
+              PlatOz HR was established in 2007 for bringing about a
+              transformation in the way an enterprise looks at different
+              concepts and values their most important resource which is Human
+              Capital. At the same time, the team at PlatOz wanted to support
+              people in the way they look at their own careers and was concerned
+              in working in areas that would empower people to take charge of
+              their own careers.
             </p>
           </Col>
-        </Row>
-        <Row
-          style={{ minHeight: "10vh", paddingBottom: "1rem" }}
-          justify="center"
-          align="bottom"
-        >
-          <DownOutlined style={{ color: "black", fontSize: "1.5rem" }} />
         </Row>
         <Row style={{ paddingTop: "5rem" }} justify="center" align="bottom">
           <Col
@@ -97,13 +109,17 @@ export default function Home() {
                 alignItems: "center",
               }}
             >
-              <img src="/our-team.png" alt="Our Team" width="100%"></img>
+              <img
+                src="https://static.wixstatic.com/media/9ec075_a3536f4679ff4161b378bd89bb4971bf~mv2.jpg/v1/fill/w_1187,h_890,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/platoz%20team.jpg"
+                alt="Our Team"
+                width="100%"
+              ></img>
             </Col>
           </Col>
         </Row>
         <Row style={{ padding: "4rem 0" }} justify="center" align="bottom">
-          <Link href="/jobs">
-            <a className={listingStyles.button_s}>Join Us</a>
+          <Link href="/jobs" prefetch={false}>
+            <a className={listingStyles.button_s}>View Jobs</a>
           </Link>
         </Row>
       </main>

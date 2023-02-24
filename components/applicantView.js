@@ -31,6 +31,7 @@ export default function ApplicantView(props) {
     }
     return color;
   }
+
   if (error) {
     console.log(error);
     return `<div> Error </div>`
@@ -62,6 +63,7 @@ export default function ApplicantView(props) {
       <List
         split={false}
         itemLayout="horizontal"
+        pagination={{position: 'bottom', align: 'end'}}
         dataSource={data}
         renderItem={(item) => (
           <List.Item>

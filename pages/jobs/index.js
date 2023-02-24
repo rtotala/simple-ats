@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
-import listingStyles from "../styles/ListingsPage.module.css";
+import styles from "../../styles/Home.module.css";
+import listingStyles from "../../styles/ListingsPage.module.css";
 import { Row, Col, Divider, List } from "antd";
 
 function Jobs({ jobs }) {
@@ -17,13 +17,14 @@ function Jobs({ jobs }) {
           <Col xs={{ span: 20 }} lg={{ span: 10 }}>
             <h1>Job Openings</h1>
             <Divider />
+            {jobs.length ? 
             <List
               className={listingStyles.list}
               dataSource={jobs}
-              renderItem={(item) => (
+              renderItem={(item) => (  
                 <List.Item
                   actions={[
-                    <Link key={item._id} href={`/jobs/${item._id}`}>
+                    <Link key={item._id} href={`/jobs/${item._id}`} prefetch={false}>
                       <a className={listingStyles.link} key="apply">
                         Apply
                       </a>
@@ -35,6 +36,7 @@ function Jobs({ jobs }) {
                 </List.Item>
               )}
             />
+            : "No Jobs ..."}
           </Col>
         </Row>
       </main>
@@ -55,9 +57,10 @@ export async function getStaticProps() {
       revalidate: 60
     }
   } catch (e) {
+    console.log(e);
     return {
       props: {
-        jobs: [{}]
+        jobs: []
       },
       revalidate: 10
     }

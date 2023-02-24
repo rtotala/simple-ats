@@ -1,5 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button, Form, Input } from "antd";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false
+});
 
 const layout = {
   labelCol: { span: 4 },
@@ -8,13 +13,32 @@ const layout = {
 
 export default function EditJobModal(props) {
   const [form] = Form.useForm();
+  // let quillRef = useRef();
+
+  const [rte, setRte] = useState({
+    theme: 'snow',
+    enabled: true,
+    readOnly: false,
+    value: { ops: []}
+  });
+
+  const onEditorChange = (value, delta, source, editor) => {
+    console.log(value, editor);
+    setRte({
+      value: editor.getHTML()
+    });
+  }
 
   useEffect(() => {
     form.resetFields();
+    setRte({
+      value: (props.data.description)
+    })
   }, [props.data]);
 
   async function handleSubmit(e) {
     e.id = props.data._id;
+    e.description = rte.value;
     await fetch("/api/jobs", {
       method: "put",
       body: JSON.stringify(e),
@@ -70,8 +94,10 @@ export default function EditJobModal(props) {
           rules={[{ required: true }]}
           initialValue={props.data.description}
         >
-          <Input.TextArea rows={8} />
+          <ReactQuill theme="snow" value={rte.value} onChange={onEditorChange} />
         </Form.Item>
+
+      
         <Form.Item
           wrapperCol={{
             ...layout.wrapperCol,
@@ -95,6 +121,8 @@ export default function EditJobModal(props) {
           </Button>
         </Form.Item>
       </Form>
+
+      
     </Modal>
   );
 }

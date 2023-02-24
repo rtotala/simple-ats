@@ -40,7 +40,7 @@ function Applicants(props) {
   return (
     <Layout
       className={styles.siteLayoutBackground}
-      style={{ paddingTop: 84, minHeight: "100vh" }}
+      style={{ paddingTop: 10, minHeight: "100vh" }}
     >
       <InsertApplicantModal
         visible={insertApplicantModalVisible}
@@ -69,7 +69,7 @@ function Applicants(props) {
       </Row>
       <Divider />
       <Layout className={styles.siteLayoutBackground}>
-        <Sider className={styles.siteLayoutBackground} width={200}>
+        <Sider className={styles.siteLayoutBackground} width={300}>
           <Menu
             mode="inline"
             defaultSelectedKeys={["0"]}
