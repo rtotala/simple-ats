@@ -18,10 +18,6 @@ This project uses a MongoDB database. Create your own database and then fill out
 For demo purposes the api is unprotected. Protecting your api is highly recommended.  
 The signup route is also unprotected, you should secure this route in production.
 
-## Demo
-The demo is available at https://ats.demos.baykam.me/.  
-To access the applicant tracking system visit https://ats.demos.baykam.me/ats.
-
 ## Contributing
 Pull requests are welcome.
 
