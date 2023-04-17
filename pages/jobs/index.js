@@ -25,9 +25,9 @@ function Jobs({ jobs }) {
                 <List.Item
                   actions={[
                     <Link key={item._id} href={`/jobs/${item._id}`} prefetch={false}>
-                      <a className={listingStyles.link} key="apply">
+                      <span className={listingStyles.link} key="apply">
                         Apply
-                      </a>
+                      </span>
                     </Link>,
                   ]}
                 >
